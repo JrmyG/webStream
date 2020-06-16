@@ -1,3 +1,11 @@
-let mongoose = require('mongoose');
+/*
+Requirement
+*/
+    let mongoose = require('mongoose');
+//
 
-exports.User = mongoose.model('User', require('./UserSchema'));
+/*
+Export
+*/
+    exports.User = mongoose.model('User', require('./UserSchema'));
+//

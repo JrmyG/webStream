@@ -1,7 +1,14 @@
+/*
+Requirements
+*/
 const express = require('express'),
     router = express.Router(),
     passport = require('passport');
+//
 
+/*
+Dev
+*/
 router.get('/',
     require('connect-ensure-login').ensureLoggedOut(),
     (req, res) => {

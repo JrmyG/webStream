@@ -10,7 +10,9 @@ Requirements
     const config = require('./config/default');
     const flash = require('connect-flash');
     const { patch } = require('request');
-    const passport = require('./auth/passport'); 
+    const passport = require('./auth/passport');
+    const node_media_server = require('./media_server'); 
+    const path = require('path');
 
     // Secret 
     const keys = require('./config/secret');
@@ -27,7 +29,7 @@ Definition
     mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
     app.set('view engine', 'ejs');
-    app.set('views', patch.join(__dirname, './views'));
+    app.set('views', path.join(__dirname, './views'));
     app.use(express.static('public'));
     app.use(flash());
     app.use(require('cookie-parser')());
@@ -52,5 +54,6 @@ Definition
 /*
 Export
 */
+    node_media_server.run();
     app.listen(port, () => console.log(`App listening on port ${port}`));
 //

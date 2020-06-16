@@ -1,11 +1,3 @@
-/*
-Requirements
-*/
-    const mongoose = require('mongoose');
-//
+let mongoose = require('mongoose');
 
-/*
-Export
-*/
-    exports.User = mongoose.model('User', require('./UserSchema'));
-//
+exports.User = mongoose.model('User', require('./UserSchema'));

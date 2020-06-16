@@ -1,31 +1,23 @@
-/*
-Requirements
-*/
-    const passport = require('passport');
-    const LocalStrategy  = require('passport-local').Strategy;
-    const User = require('../database/Schema').User;
-    const shortid = require('shortid');
-//
+const passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    User = require('../database/Schema').User,
+    shortid = require('shortid');
 
-/*
-Definition
-*/
-    passport.serializeUser((user, cb) => {
-        cb(null, user);
-    });
+passport.serializeUser( (user, cb) => {
+    cb(null, user);
+});
 
-    passport.deserializeUser((obj, cb) => {
-        cb(null, obj);
-    });
+passport.deserializeUser( (obj, cb) => {
+    cb(null, obj);
+});
 
-    // Passport Strategy for Handling User Registration
-    passport.use('localRegister', new LocalStrategy({
+passport.use('localRegister', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
     },
     (req, email, password, done) => {
-        User.findOne({ $or: [{ email: email }, { username: req.body.username }] }, (err, user) => {
+        User.findOne({$or: [{email: email}, {username: req.body.username}]},  (err, user) => {
             if (err)
                 return done(err);
             if (user) {
@@ -35,14 +27,15 @@ Definition
                 if (user.username === req.body.username) {
                     req.flash('username', 'Username is already taken');
                 }
-                return done(null, false)
+
+                return done(null, false);
             } else {
-                let user = new user();
+                let user = new User();
                 user.email = email;
                 user.password = user.generateHash(password);
                 user.username = req.body.username;
                 user.stream_key = shortid.generate();
-                user.save((err) => {
+                user.save( (err) => {
                     if (err)
                         throw err;
                     return done(null, user);
@@ -51,28 +44,26 @@ Definition
         });
     }));
 
-    // Passport Strategy for Authenticating User
-    passport.use('localLogin', new LocalStrategy({
+passport.use('localLogin', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
     },
     (req, email, password, done) => {
-        if (err)
-            return done(err);
-        
-        if (!user)
-            return done(null, false, req.flash('email', 'Email doesn\'t exist'));
-        
-        if (!user.validPassword(password))
-            return done(null, false, req.flash('password', 'Wrong password'));
 
-        return done(null, user)
+        User.findOne({'email': email}, (err, user) => {
+            if (err)
+                return done(err);
+
+            if (!user)
+                return done(null, false, req.flash('email', 'Email doesn\'t exist.'));
+
+            if (!user.validPassword(password))
+                return done(null, false, req.flash('password', 'Oops! Wrong password.'));
+
+            return done(null, user);
+        });
     }));
-//
 
-/*
-Export
-*/
-    module.exports = passport;
-//
+
+module.exports = passport;

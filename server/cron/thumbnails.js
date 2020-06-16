@@ -4,7 +4,7 @@ Requirements
     const CronJob = require('cron').CronJob,
         request = require('request'),
         helpers = require('../helpers/helpers'),
-        config = require('../config/default'),       
+        config = require('../config/default');    
 //
 
 /*

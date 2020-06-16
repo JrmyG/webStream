@@ -3,8 +3,7 @@ Requirements
 */
     const mongoose = require('mongoose'),
         bcrypt   = require('bcrypt-nodejs'),
-        shortid = require('shortid'),
-        
+        shortid = require('shortid');    
 //
 
 /*

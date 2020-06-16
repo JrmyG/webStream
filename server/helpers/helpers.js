@@ -2,7 +2,7 @@
 Requirements
 */
     const spawn = require('child_process').spawn,
-        config = require('../config/default'),
+        config = require('../config/default');
 //
 
 /*

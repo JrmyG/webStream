@@ -11,7 +11,7 @@ Requirement
         FileStore = require('session-file-store')(Session),
         config = require('./config/default'),
         flash = require('connect-flash'),
-        keys = require('./config/secret')
+        keys = require('./config/secret'),
         node_media_server = require('./media_server'),
         thumbnail_generator = require('./cron/thumbnails');
 //

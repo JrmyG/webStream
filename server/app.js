@@ -13,6 +13,7 @@ Requirement
         flash = require('connect-flash'),
         keys = require('./config/secret'),
         node_media_server = require('./media_server'),
+        cors = require('cors'),
         thumbnail_generator = require('./cron/thumbnails');
 //
 
@@ -33,6 +34,7 @@ Definition
     app.use(require('cookie-parser')());
     app.use(bodyParse.urlencoded({extended: true}));
     app.use(bodyParse.json({extended: true}));
+    app.use(cors());
 
     app.use(Session({
         store: new FileStore({
@@ -53,6 +55,7 @@ Definition
     app.use('/settings', require('./routes/settings'));
     app.use('/streams', require('./routes/streams'));
     app.use('/user', require('./routes/user'));
+    app.use('/articles', require('./routes/articles'));
 
     app.get('/logout', (req, res) => {
         req.logout();

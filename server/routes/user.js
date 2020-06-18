@@ -10,9 +10,8 @@ Definition
 */
     const router = express.Router();
     router.get('/',
-        require('connect-ensure-login').ensureLoggedIn(),
+        // require('connect-ensure-login').ensureLoggedIn(),
         (req, res) => {
-
             if(req.query.username){
                 User.findOne({
                     username : req.query.username
@@ -30,6 +29,19 @@ Definition
             }
         }
     );
+
+    router.get('/api', 
+        //require('connect-ensure-login').ensureLoggedIn(),
+        (req, res) => {
+            User.find((err, data) => {
+                if (err) {
+                    return (err);
+                } else {
+                    res.json(data);
+                }
+            }
+        );
+    })
 //
 
 /*

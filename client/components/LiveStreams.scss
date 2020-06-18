@@ -1,7 +1,5 @@
 .streams {
-
   .stream {
-
     .live-label {
       position: absolute;
       top: 10px;
@@ -34,4 +32,26 @@
 
   }
 
+  .users {
+    margin: 1rem 0;
+    .profile-image {
+      img {
+        width: 100%;
+      }
+    }
+
+    .username {
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      background-color: black;
+
+      a {
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+        padding: 2px 8px;
+      }
+    }
+  }
 }

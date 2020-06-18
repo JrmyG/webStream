@@ -30,7 +30,8 @@ Export
                     this.setState({
                         stream_key : res.data.stream_key
                     });
-                })
+                }
+            );
         }
 
         getStreamKey(){

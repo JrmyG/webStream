@@ -25,8 +25,18 @@ Export
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item float-right">
+                                <Link className={'nav-link'} to={'/articles'}>
+                                    Articles
+                                </Link>
+                                </li>
+                                <li className="nav-item float-right">
                                     <Link className={'nav-link'} to={'/settings'}>
                                         Go Live
+                                    </Link>
+                                </li>
+                                <li className="nav-item float-right">
+                                    <Link className={'nav-link'} to={'http://github.com/jrmyG'}>
+                                        Github
                                     </Link>
                                 </li>
                                 <li className="nav-item float-right">

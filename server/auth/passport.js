@@ -41,6 +41,7 @@ Definition
                     user.email = email;
                     user.password = user.generateHash(password);
                     user.username = req.body.username;
+                    user.image_url = user.randomPicture();
                     user.stream_key = shortid.generate();
                     user.save( (err) => {
                         if (err)

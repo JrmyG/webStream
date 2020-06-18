@@ -1,31 +1,34 @@
 /*
 Requirements
 */
-const express = require('express'),
-    router = express.Router(),
-    passport = require('passport');
+    const express = require('express'),
+        passport = require('passport');
 //
 
 /*
-Dev
+Definition
 */
-router.get('/',
-    require('connect-ensure-login').ensureLoggedOut(),
-    (req, res) => {
-        res.render('login', {
-            user : null,
-            errors : {
-                email : req.flash('email'),
-                password : req.flash('password')
-            }
+    const router = express.Router();
+    router.get('/',
+        require('connect-ensure-login').ensureLoggedOut(),
+        (req, res) => {
+            res.render('login', {
+                user : null,
+                errors : {
+                    email : req.flash('email'),
+                    password : req.flash('password')
+                }
+            });
         });
-    });
 
-router.post('/', passport.authenticate('localLogin', {
-    successRedirect : '/',
-    failureRedirect : '/login',
-    failureFlash : true
-}));
+    router.post('/', passport.authenticate('localLogin', {
+        successRedirect : '/',
+        failureRedirect : '/login',
+        failureFlash : true
+    }));
 
-module.exports = router;
-
+/*
+Export
+*/
+    module.exports = router;
+//

@@ -30,6 +30,21 @@ Definition
             }
         }
     );
+
+    router.get('/user',
+        require('connect-ensure-login').ensureLoggedIn(),
+        (req, res) => {
+            Article.findById({
+                _id: req.params.id
+            }, (err, data) => {
+                if (err) {
+                    return (err);
+                } else {
+                    res.json(data);
+                }
+            }) 
+        }
+    );
 //
 
 /*

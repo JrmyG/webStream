@@ -1,0 +1,28 @@
+@media screen and (max-width: 640px){
+    .articles-wrapper {
+        .news {
+            position: relative;
+            background-color: #f2f2f2;
+            display: inline-grid;
+            max-width: 100%;
+            width: 100%;
+            text-align: center;
+            margin: 1rem 0;
+        }
+    }
+}
+@media screen and (min-width: 641px) {
+    .articles-wrapper {
+        display: block;
+        position: relative;
+        .news {
+            position: relative;
+            background-color: #f2f2f2;
+            display: inline-grid;
+            max-width: 100%;
+            width: 28%;
+            text-align: center;
+            margin: 1rem;
+        }
+    }
+}

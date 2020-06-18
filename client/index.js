@@ -5,7 +5,7 @@ Imports & Requirements
 
     import React from "react";
     import ReactDOM from 'react-dom';
-    import {BrowserRouter} from 'react-router-dom';
+    import { BrowserRouter } from 'react-router-dom';
     import 'bootstrap';
     import Root from './components/Root.js';
 //

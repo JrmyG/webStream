@@ -32,7 +32,7 @@ export default class ArticleUpdate extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:' + config.server.port + '/articles/api/' + this.props.match.params._id)
+        axios.get('http://localhost:' + config.server.port + '/articles/api/' + this.props.match.params.id)
             .then(res => {
                 this.setState ({
                     title: res.data.title,

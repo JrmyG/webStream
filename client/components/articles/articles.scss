@@ -10,6 +10,15 @@
             margin: 1rem 0;
         }
     }
+    .article {
+        .content {
+            p {
+                margin: 3rem 0;
+            }
+            text-align: center;
+            padding: 1rem 2rem;
+        }
+    }
 }
 @media screen and (min-width: 641px) {
     .articles-wrapper {
@@ -23,6 +32,16 @@
             width: 28%;
             text-align: center;
             margin: 1rem;
+        }
+    }
+
+    .article {
+        .content {
+            p {
+                margin: 5rem 0;
+            }
+            text-align: center;
+            padding: 1rem 7rem;
         }
     }
 }

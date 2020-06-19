@@ -6,3 +6,8 @@
 html,body{
   font-family: 'Dosis', sans-serif;
 }
+.form-wrapper {
+  max-width: 100%;
+    width: calc(100% - 25%);
+    margin: auto;
+}

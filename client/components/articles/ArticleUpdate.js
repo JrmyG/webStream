@@ -1,17 +1,18 @@
 /*
 Imports
 */
-    import React, { Component } from "react";
+    import React from "react";
     import Form from 'react-bootstrap/Form'
     import Button from 'react-bootstrap/Button';
     import axios from 'axios';
     import config from "../../../server/config/default";
+    import { Redirect } from 'react-router-dom';
 //
 
 /*
 Export
 */
-export default class ArticleUpdate extends Component {
+export default class ArticleUpdate extends React.Component {
 
     constructor(props) {
         super(props)
@@ -24,10 +25,23 @@ export default class ArticleUpdate extends Component {
 
         // Setting up state
         this.state = {
-        title: '',
-        description: '',
-        content: ''
+            title: '',
+            description: '',
+            content: '',
         }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:' + config.server.port + '/articles/api/' + this.props.match.params._id)
+            .then(res => {
+                this.setState ({
+                    title: res.data.title,
+                    description: res.data.description,
+                    content: res.data.content,
+                });
+            }).catch((err) => {
+                console.log(err);
+            });
     }
 
     onChangeArticleTitle(e) {
@@ -46,14 +60,19 @@ export default class ArticleUpdate extends Component {
         e.preventDefault()
 
         const article = {
-        title: this.state.title,
-        description: this.state.description,
-        content: this.state.content
+            title: this.state.title,
+            description: this.state.description,
+            content: this.state.content
         };
-        axios.put('http://localhost:' + config.server.port + '/articles/api/update/' + res.body._id, article)
-        .then(res => console.log(res.data));
 
-        this.setState({ title: '', description: '', content: '' })
+        console.log(article);
+        axios.put('http://localhost:' + config.server.port + '/articles/api/update/' + this.props.match.params.id, article)
+            .then((res) => {
+                console.log(res.data);
+            }).catch((err) => {
+                console.log(err);
+            });
+        this.props.history.push('/articles');
     }
 
     render() {
@@ -75,7 +94,7 @@ export default class ArticleUpdate extends Component {
             </Form.Group>
 
             <Button variant="danger" size="lg" block="block" type="submit">
-            Create Student
+                Update Article
             </Button>
         </Form>
         </div>);

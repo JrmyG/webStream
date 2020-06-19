@@ -25,7 +25,7 @@ Definition
 
     // GET ONE article
     router.get('/api/:id', 
-        // require('connect-ensure-login').ensureLoggedIn(),
+        require('connect-ensure-login').ensureLoggedIn(),
         (req, res) => {
             Article.findById({
                 _id: req.params.id
@@ -41,7 +41,7 @@ Definition
 
     // CREATE article
     router.post('/api/create', 
-        // require('connect-ensure-login').ensureLoggedIn(),
+        //require('connect-ensure-login').ensureLoggedIn(),
         (req, res) => {
         const article = new Article({
             title: req.body.title,
@@ -74,7 +74,7 @@ Definition
                         return (err);
                     } else {
                         res.json(data);
-                        console.log('Student updated successfully !')
+                        console.log('Article updated successfully !')
                     }
                 }
             );
